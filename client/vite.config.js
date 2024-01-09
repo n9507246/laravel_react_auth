@@ -7,8 +7,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@views': path.resolve(__dirname, './src/views'),
-      '@layouts': path.resolve(__dirname, './src/view/layouts'),
-      '@pages': path.resolve(__dirname, './src/view/pages'),
+      '@layouts': path.resolve(__dirname, './src/views/layouts'),
+      '@pages': path.resolve(__dirname, './src/views/pages'),
       '@routes': path.resolve(__dirname, './src/routes'),
       '@hoc': path.resolve(__dirname, './src/hoc'),
       '@hooks': path.resolve(__dirname, './src/hooks'),

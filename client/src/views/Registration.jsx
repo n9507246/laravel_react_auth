@@ -1,7 +1,7 @@
 export default function (){
     return (
         <>
-            Home
+            Registration
         </>
     )
 }

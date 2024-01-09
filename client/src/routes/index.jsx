@@ -1,22 +1,11 @@
 import { createBrowserRouter} from "react-router-dom"
 
-import Login from '@views/Login.jsx'
-import Home from '@views/Home.jsx'
-import NotFound from '@views/NotFound.jsx'
-
+import profileRoutes from "@routes/profile/profileRoutes"
+import authRoutes from "@routes/auth/authRoutes"
+import notFoundRoute from '@routes/notFound/nodFoundRoute.jsx'
 
 export default createBrowserRouter([
-    {
-        path: '/',
-        element:<Home />
-    },
-    {
-        path: '/login',
-        element: <Login/>
-    },
-    {
-        path: '*',
-        element: <NotFound/>
-    },
-    
+    ...authRoutes,
+    ...profileRoutes,
+    ...notFoundRoute
 ])
