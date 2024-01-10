@@ -4,7 +4,12 @@ import { Outlet } from "react-router-dom";
 
 export default function(){
    
-    const user = {isAuthenticate:true}
+    const user = {
+        data:  localStorage.getItem('TOKEN'),
+        get isAuthenticate() {
+            return this.data !== null
+        } 
+    }
     
     if(user.isAuthenticate) return redirectToDashboard()  
     else return renderGuestsComponents()

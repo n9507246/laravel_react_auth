@@ -4,7 +4,6 @@ import RequiredAuthRoutes from '@guards/RequiredAuthRoutes'
 import DefaultLayout from "@views/layouts/DefaultLayout"
 import Dashboard from '@views/Dashboard.jsx'
 
-
 export default [ 
   {
     element: <RequiredAuthRoutes/>,
