@@ -20,10 +20,10 @@ export default function (){
 
         API.post('/auth/login', formData)
             .then((responce)=>{
-                console.log('res', responce )
+                // console.log('res', responce )
                 auth.setDataCurrendUser({
-                    userData : { name: 'ass hole', email: 'ass@hole'},
-                    token : responce.data.access_token
+                    userData : responce.data.user_data,
+                    token : responce.data.token
                 })
                 navigate('/', {replace:true})
             })
