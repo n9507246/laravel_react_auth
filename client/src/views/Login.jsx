@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from "@contexts/authContext"
 
 export default function (){     
@@ -15,8 +15,28 @@ export default function (){
 
     return (
         <>
-            Login
-            <button onClick={login}>Sing in</button>
+            <h1>Вход</h1>
+            <form onSubmit={login}>
+        
+                <div>
+                    <label>Email</label>
+                    <input type='email' placeholder="JohnDoe@example.com"/>
+                </div>
+
+                <div>
+                    <label>Пароль</label>
+                    <input type='password'/>
+                </div>
+
+                <p>
+                    Еще не зарегистрированны? <Link to='/registration'>Регистрация</Link>
+                </p>
+
+                <button onClick={login}>Вход</button>
+
+            </form>
+            
+            
         </>
     )
 }
