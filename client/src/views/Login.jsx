@@ -1,16 +1,35 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from "@contexts/authContext"
+import { useRef } from "react"
+import API from "@axiosClient"
 
 export default function (){     
+
     const navigate = useNavigate()
     const auth = useAuth()
+    
+    const emailRef = useRef()
+    const passwordRef = useRef() 
+    
+    const login = (ev)=> {
+        ev.preventDefault()
+        const formData = {
+            email: emailRef.current.value,
+            password: passwordRef.current.value
+        }
 
-    const login = ()=> {
-        auth.setDataCurrendUser({
-            userData : { name: 'ass hole', email: 'ass@hole'},
-            token : 'asdsadsasadasdasdsa'
-        })
-        navigate('/', {replace:true})
+        API.post('/auth/login', formData)
+            .then((responce)=>{
+                console.log('res', responce )
+                auth.setDataCurrendUser({
+                    userData : { name: 'ass hole', email: 'ass@hole'},
+                    token : responce.data.access_token
+                })
+                navigate('/', {replace:true})
+            })
+            .catch((error)=>{console.error('err',error)})
+
+        
     }
 
     return (
@@ -20,12 +39,12 @@ export default function (){
         
                 <div>
                     <label>Email</label>
-                    <input type='email' placeholder="JohnDoe@example.com"/>
+                    <input ref={emailRef} type='email' placeholder="JohnDoe@example.com"/>
                 </div>
 
                 <div>
                     <label>Пароль</label>
-                    <input type='password'/>
+                    <input ref={passwordRef} type='password'/>
                 </div>
 
                 <p>

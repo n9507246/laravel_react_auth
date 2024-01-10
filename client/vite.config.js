@@ -14,6 +14,7 @@ export default defineConfig({
       '@guards': path.resolve(__dirname, './src/guards'),
       '@hooks': path.resolve(__dirname, './src/hooks'),
       '@contexts' : path.resolve(__dirname, './src/contexts'),
+      '@axiosClient': path.resolve(__dirname, './src/axios-client.js'), 
       '@':  path.resolve(__dirname, './src'),
       '@assets': path.resolve(__dirname, './src/assets'),
       '@components': path.resolve(__dirname, './src/components'),
