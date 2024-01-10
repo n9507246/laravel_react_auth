@@ -11,6 +11,7 @@ export default defineConfig({
       '@pages': path.resolve(__dirname, './src/views/pages'),
       '@routes': path.resolve(__dirname, './src/routes'),
       '@hoc': path.resolve(__dirname, './src/hoc'),
+      '@guards': path.resolve(__dirname, './src/guards'),
       '@hooks': path.resolve(__dirname, './src/hooks'),
       '@context' : path.resolve(__dirname, './src/context'),
       '@':  path.resolve(__dirname, './src'),

@@ -1,15 +1,27 @@
- 
+import { Navigate } from 'react-router-dom'
+
+import RequiredAuthRoutes from '@guards/RequiredAuthRoutes' 
 import DefaultLayout from "@views/layouts/DefaultLayout"
 import Dashboard from '@views/Dashboard.jsx'
 
+
 export default [ 
   {
-    element: <DefaultLayout/>,
-    children:[
-      {
-          path: '/dashboard',
-          element: <Dashboard/>
-      },
-    ]
+    element: <RequiredAuthRoutes/>,
+    children: [
+          {
+              element: <DefaultLayout/>,
+              children:[
+                  {
+                      path: '/',
+                      element: <Navigate to='/dashboard'/>
+                  },
+                  {
+                      path: '/dashboard',
+                      element: <Dashboard/>
+                  },
+              ]
+          }
+      ]
   }
 ]
