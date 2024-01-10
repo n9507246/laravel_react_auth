@@ -1,15 +1,11 @@
 import { Outlet } from "react-router-dom";
 import { Navigate} from 'react-router-dom'
+import { useAuth } from '@contexts/authContext';
 
 export default function(){
 
-    const user = {
-        data:  localStorage.getItem('TOKEN'),
-        get isAuthenticate() {
-            return this.data !== null
-        } 
-    }
-    
+    const user = useAuth()
+
     if(user.isAuthenticate) return renderGuardComponents() 
     else return redirectToLoginPage()
 }
