@@ -14,7 +14,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'refresh']]);
+        $this->middleware('auth:api', ['except' => ['login', 'refresh', 'registration']]);
     }
 
     /**
@@ -37,6 +37,17 @@ class AuthController extends Controller
         //         'token' => $token
         //     ]
         // );
+        return $this->respondWithToken($token);
+    }
+
+    public function registration(\App\Http\Requests\AuthRegistrationRequest $request){
+        $data = $request->only('name', 'email', 'password');
+        $user = \App\Models\User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => \Hash::make($data['password'])
+        ]);
+        $token = auth()->tokenById($user->id);
         return $this->respondWithToken($token);
     }
 
