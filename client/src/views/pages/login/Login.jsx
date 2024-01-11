@@ -30,13 +30,7 @@ export default function (){
                 navigate('/', {replace:true})
             })
             .catch((error)=>{
-                console.error('aaaaaa', error)
-                console.error('err',error.response.data.errors)
-                console.error('xxxxxxxx',[{email: [error.response.data.error]}])
-                
-                // if(error.response.status == 401) setErr({email: [error.response.data.error]})
-                if(error.response.status == 422) setErr(error.response.data.errors)
-                console.log('err', err)
+                if(error.response.status == 422) form.errors.setMessage(error.response.data.errors)
             })
 
         
@@ -53,13 +47,13 @@ export default function (){
                 <div className={classes.loginForm__field}>
                     <label>Email</label>
                     <input ref={emailRef} type='email' placeholder="JohnDoe@example.com"/>
-                    { err.email !== undefined && <div className={classes.field__error}>{err.email[0]}</div> }
+                    { form.errors.message.email !== undefined && <div className={classes.field__error}>{err.email[0]}</div> }
                 </div>
 
                 <div className={classes.loginForm__field}>
                     <label>Пароль</label>
                     <input ref={passwordRef} type='password'/>
-                    {err.password !== undefined && <div className={classes.field__error}>{err.password[0]}</div>}
+                    {form.errors.message.password !== undefined && <div className={classes.field__error}>{err.password[0]}</div>}
                 </div>
 
                 <div className={classes.loginForm__controlArea}>

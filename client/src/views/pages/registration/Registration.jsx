@@ -1,26 +1,46 @@
 import classes from './styles.module.css'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import MyInput from '@UI/Myinput/MyInput'
+import { useAuth } from "@contexts/authContext"
+import API from "@axiosClient"
 
-import useForm from '@hooks/useForm'
+import useFormData from '@hooks/useFormData'
 
 export default function (){
 
-    const {getFormData, setFormField} = useForm()
+    const registrationData = useFormData()
+    const auth = useAuth()
+    const navigate = useNavigate()
 
-    const registration = (e)=>{
+    const registrationDataHandler = (e)=>{
         e.preventDefault();
-        console.log(getFormData())
+        API.post('/auth/registration', registrationData.getData())
+        .then((responce)=>{
+            console.log('res', responce )
+            console.log('userData', responce.data.user_data )
+            console.log('token', responce.data.access_token )
+            auth.setDataCurrendUser({
+                userData : responce.data.user_data,
+                token : responce.data.access_token
+            })
+            navigate('/', {replace:true})
+        })
+        .catch((error)=>{
+            console.log('error',error)
+            if(error.response.status == 422) registrationData.setError(error.response.data.errors)
+        
+        })
+
     }
     return (
         <div className={classes.registration}>
             <h1>Регистрация</h1>
-            <form className={classes.registrationForm} onSubmit={registration}>
+            <form className={classes.registrationForm} onSubmit={registrationDataHandler}>
 
-                <MyInput label='Имя' placeholder='John Doe' data={setFormField('name')}/>      
-                <MyInput label='Email' placeholder='JohnDoe@example.com' data={setFormField('email')}/>
-                <MyInput label='Пароль' data={setFormField('password')}/>
-                <MyInput label='Подтверждение пароля' data={setFormField('password_confrmation')}/>
+                <MyInput label='Имя' name='name' type='text' placeholder='John Doe' data={registrationData}/>      
+                <MyInput  label='Email' name='email' type='text' placeholder='JohnDoe@example.com' data={registrationData} />
+                <MyInput label='Пароль' name='password' type='password'  data={registrationData}/> 
+                <MyInput label='Подтверждение пароля' name='password_confirmation' type='password' data={registrationData}/>
 
                 <div className={classes.registrationForm__controlArea}>
                     <button  className={classes.controlArea__btnSunmit} onClick={() => 'asd'}>Регистрация</button>

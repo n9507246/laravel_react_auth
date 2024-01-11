@@ -1,11 +1,17 @@
 import classes from './styles.module.css'
 
 export default function(props){
+    // console.log(props.data.getErrorByName(props.name))
+    const {getDataByName, getErrorByName} = props.data !== undefined ? props.data : {}
     return(
         <div className={classes.inputField}>
             <label>{props.label}</label>
-             <input ref={props.data} type='text' placeholder={props.placeholder}/>
-            {/* <input ref={el => console.log('zzzzzzz',el  )} type='text' placeholder={props.placeholder}/> */}
+             <input 
+                ref={ getDataByName ? getDataByName(props.name) : undefined} 
+                type={props.type} 
+                placeholder={props.placeholder}
+            />
+            <div className={classes.field__error}>{ getErrorByName ? getErrorByName(props.name) : undefined }</div> 
         </div>
     )
 }
