@@ -55,7 +55,7 @@ export default function (){
                 </div> */}
                 <div className={classes.loginForm__controlArea}>
                     <button  className={classes.controlArea__btnSunmit} onClick={login}>Вход</button>
-                    <div className={classes.controlArea__regLink} ><Link to='/registration'>Регистрация</Link></div>
+                    <Link className={classes.controlArea__regLink}  to='/registration'>Регистрация</Link>
                 </div>
                 
 
