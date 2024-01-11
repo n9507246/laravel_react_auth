@@ -1,4 +1,4 @@
-.login{
+.registration{
     background-color: white;
     padding: 15px 20px 25px 20px;
     width: 80%;
@@ -11,35 +11,37 @@
     flex-direction: column;
 }
 
-.login h1{
+.registration h1{
     font-size: 40px;
     text-align: center; 
-    
 }
 
+.registrationForm__field{
+    display: flex;
+    flex-direction: column;
+}
 
 @media  (min-width: 768px) {
-    .login{
+    .registration{
         width: 50%;  
     }
   }
 @media  (min-width: 1440px) {
-    .login{
+    .registration{
         width: 30%;  
     }
-    .loginForm {
+    .registrationForm {
       width: 90%;
       margin: auto;
     }
   }
 
-
-.loginForm__field{
+  .loginForm__field{
     display: flex;
     flex-direction: column;
 }
 
-.loginForm__field input{
+.registrationForm__field input{
     border-color: #0000001a;
     height: 30px;
     border-radius: 5px;
@@ -48,12 +50,19 @@
     margin-bottom: 10px;
 }
 
-.loginForm__field label{
+.registrationForm__field label{
     padding-left: 5px;
     margin-bottom: 10px;
     font-size: 20px;
 }
-.loginForm__linkToRegistration{
+
+
+
+
+
+
+
+/* .loginForm__linkToRegistration{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,12 +75,14 @@
 .loginForm button{
     font-size: 20px;
     padding: 7px;
-}
-.loginForm__controlArea{
+} */
+.registrationForm__controlArea{
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
 }
+
+
 .controlArea__btnSunmit{
     border: 1px solid rgb(11, 103, 231);
     background-color: rgb(11, 103, 231);
@@ -80,11 +91,12 @@
     border-radius: 5px;
     font-size: 20px;
     cursor: pointer;
+    padding: 7px;
 }
 .controlArea__btnSunmit:hover{
     background-color: rgb(7, 92, 212); 
 }
-.controlArea__regLink{
+.controlArea__authLink{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -96,6 +108,6 @@
     font-size: 20px;
     text-align: center;
 }
-.controlArea__regLink:hover{
+.controlArea__authLink:hover{
     background-color: rgb(220, 217, 217);
 }

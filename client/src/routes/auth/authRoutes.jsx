@@ -1,7 +1,7 @@
 import GuestRoutes from '@guards/GuestRoutes'
 import GuestLayout from "@layouts/guest/GuestLayout"
 import Login from '@pages/login/Login.jsx'
-import Registration from '@views/Registration.jsx'
+import Registration from '@pages/registration/Registration.jsx'
 
 export default [ 
     {

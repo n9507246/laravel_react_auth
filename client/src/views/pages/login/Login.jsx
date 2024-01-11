@@ -48,11 +48,6 @@ export default function (){
                     <input ref={passwordRef} type='password'/>
                 </div>
 
-                {/* <div className={classes.loginForm__linkToRegistration}>
-                    <p>
-                        Еще не зарегистрированны? <Link to='/registration'>Регистрация</Link>
-                    </p>
-                </div> */}
                 <div className={classes.loginForm__controlArea}>
                     <button  className={classes.controlArea__btnSunmit} onClick={login}>Вход</button>
                     <Link className={classes.controlArea__regLink}  to='/registration'>Регистрация</Link>
