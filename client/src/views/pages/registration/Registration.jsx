@@ -16,9 +16,6 @@ export default function (){
         e.preventDefault();
         API.post('/auth/registration', registrationData.getData())
         .then((responce)=>{
-            console.log('res', responce )
-            console.log('userData', responce.data.user_data )
-            console.log('token', responce.data.access_token )
             auth.setDataCurrendUser({
                 userData : responce.data.user_data,
                 token : responce.data.access_token
@@ -30,7 +27,7 @@ export default function (){
             if(error.response.status == 422) registrationData.setError(error.response.data.errors)
         
         })
-
+        
     }
     return (
         <div className={classes.registration}>
@@ -38,7 +35,7 @@ export default function (){
             <form className={classes.registrationForm} onSubmit={registrationDataHandler}>
 
                 <MyInput label='Имя' name='name' type='text' placeholder='John Doe' data={registrationData}/>      
-                <MyInput  label='Email' name='email' type='text' placeholder='JohnDoe@example.com' data={registrationData} />
+                <MyInput label='Email' name='email' type='text' placeholder='JohnDoe@example.com' data={registrationData} />
                 <MyInput label='Пароль' name='password' type='password'  data={registrationData}/> 
                 <MyInput label='Подтверждение пароля' name='password_confirmation' type='password' data={registrationData}/>
 
