@@ -30,11 +30,13 @@ export default function (){
                 navigate('/', {replace:true})
             })
             .catch((error)=>{
-                //console.error('err',error)
-                console.error('xxxxxxxx',error.response.data.errors)
+                console.error('aaaaaa', error)
+                console.error('err',error.response.data.errors)
+                console.error('xxxxxxxx',[{email: [error.response.data.error]}])
                 
+                // if(error.response.status == 401) setErr({email: [error.response.data.error]})
                 if(error.response.status == 422) setErr(error.response.data.errors)
-                console.log('err', error.response.data.errors)
+                console.log('err', err)
             })
 
         
