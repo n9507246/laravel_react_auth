@@ -22,9 +22,15 @@ class AuthRegistrationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required'
+            'name' => 'required|string|max:55',
+            'email' => 'required|email|unique:users,email',
+            'password' => [
+                'required', 
+                'confirmed', 
+                \Illuminate\Validation\Rules\Password::min(8)
+                    ->letters()
+                    ->symbols()
+            ]
         ];
     }
 }
