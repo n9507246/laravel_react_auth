@@ -1,6 +1,6 @@
 import GuestRoutes from '@guards/GuestRoutes'
-import GuestLayout from "@views/layouts/GuestLayout"
-import Login from '@views/Login.jsx'
+import GuestLayout from "@layouts/guest/GuestLayout"
+import Login from '@pages/login/Login.jsx'
 import Registration from '@views/Registration.jsx'
 
 export default [ 

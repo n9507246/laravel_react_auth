@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom'
 
 import RequiredAuthRoutes from '@guards/RequiredAuthRoutes' 
-import DefaultLayout from "@views/layouts/DefaultLayout"
+import DefaultLayout from "@layouts/default/DefaultLayout"
 import Dashboard from '@views/Dashboard.jsx'
 
 export default [ 
