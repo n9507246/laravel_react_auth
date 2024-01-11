@@ -76,6 +76,10 @@
     color: white;
     border-radius: 5px;
     font-size: 20px;
+    cursor: pointer;
+}
+.controlArea__btnSunmit:hover{
+    background-color: rgb(7, 92, 212); 
 }
 .controlArea__regLink{
     display: flex;
