@@ -40,7 +40,7 @@ export default function (){
                 <MyInput label='Подтверждение пароля' name='password_confirmation' type='password' data={registrationData}/>
 
                 <div className={classes.registrationForm__controlArea}>
-                    <button  className={classes.controlArea__btnSunmit} onClick={() => 'asd'}>Регистрация</button>
+                    <button  className={classes.controlArea__btnSunmit} onClick={registrationDataHandler}>Регистрация</button>
                     <Link className={classes.controlArea__authLink}  to='/login'>Вход</Link>
                 </div> 
                 
