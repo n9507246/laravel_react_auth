@@ -89,7 +89,7 @@
     align-items: center;
     justify-content: center;
     width: 45%;
-    border: 2px solid rgb(220, 217, 217);;
+    border: 2px solid rgb(220, 217, 217);
     border-radius: 5px;
     text-decoration: none;
     color: black;
@@ -98,4 +98,8 @@
 }
 .controlArea__regLink:hover{
     background-color: rgb(220, 217, 217);
+}
+.field__error{
+    color: red;
+    margin: 0px 0px 10px 5px;
 }

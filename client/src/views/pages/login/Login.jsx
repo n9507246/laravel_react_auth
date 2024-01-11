@@ -1,12 +1,13 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from "@contexts/authContext"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import API from "@axiosClient"
 import classes from './style.module.css'
 
 export default function (){     
 
     const navigate = useNavigate()
+    const [err, setErr] = useState({})
     const auth = useAuth()
     
     const emailRef = useRef()
@@ -28,7 +29,13 @@ export default function (){
                 })
                 navigate('/', {replace:true})
             })
-            .catch((error)=>{console.error('err',error)})
+            .catch((error)=>{
+                //console.error('err',error)
+                console.error('xxxxxxxx',error.response.data.errors)
+                
+                if(error.response.status == 422) setErr(error.response.data.errors)
+                console.log('err', error.response.data.errors)
+            })
 
         
     }
@@ -36,16 +43,21 @@ export default function (){
     return (
         <div className={classes.login}>
             <h1>Вход</h1>
+            {/* <pre>
+                {err.map((e)=> <div>{e.key}: {e.value}</div>)}
+            </pre> */}
             <form className={classes.loginForm} onSubmit={login}>
         
                 <div className={classes.loginForm__field}>
                     <label>Email</label>
                     <input ref={emailRef} type='email' placeholder="JohnDoe@example.com"/>
+                    { err.email !== undefined && <div className={classes.field__error}>{err.email[0]}</div> }
                 </div>
 
                 <div className={classes.loginForm__field}>
                     <label>Пароль</label>
                     <input ref={passwordRef} type='password'/>
+                    {err.password !== undefined && <div className={classes.field__error}>{err.password[0]}</div>}
                 </div>
 
                 <div className={classes.loginForm__controlArea}>
