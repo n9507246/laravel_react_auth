@@ -1,34 +1,29 @@
 import classes from './styles.module.css'
 import { Link } from "react-router-dom"
+import MyInput from '@UI/Myinput/MyInput'
+
+import useForm from '@hooks/useForm'
 
 export default function (){
+
+    const {getFormData, setFormField} = useForm()
+
+    const registration = (e)=>{
+        e.preventDefault();
+        console.log(getFormData())
+    }
     return (
         <div className={classes.registration}>
             <h1>Регистрация</h1>
-            <form className={classes.registrationForm} onSubmit={()=>{console.log('reg')}}>
-        
-                <div className={classes.registrationForm__field}>
-                    <label>Имя</label>
-                    <input type='text' placeholder="John Doe"/>
-                </div>
+            <form className={classes.registrationForm} onSubmit={registration}>
 
-                <div className={classes.registrationForm__field}>
-                    <label>Email</label>
-                    <input type='email' placeholder="JohnDoe@example.com"/>
-                </div >
-
-                <div className={classes.registrationForm__field}>
-                    <label>Пароль</label>
-                    <input type='password'/>
-                </div>
-
-                <div className={classes.registrationForm__field}>
-                    <label>Подтверждение пароля</label>
-                    <input type='password'/>
-                </div>
+                <MyInput label='Имя' placeholder='John Doe' data={setFormField('name')}/>      
+                <MyInput label='Email' placeholder='JohnDoe@example.com' data={setFormField('email')}/>
+                <MyInput label='Пароль' data={setFormField('password')}/>
+                <MyInput label='Подтверждение пароля' data={setFormField('password_confrmation')}/>
 
                 <div className={classes.registrationForm__controlArea}>
-                    <button  className={classes.controlArea__btnSunmit} onClick={()=>{console.log('reg')}}>Регистрация</button>
+                    <button  className={classes.controlArea__btnSunmit} onClick={() => 'asd'}>Регистрация</button>
                     <Link className={classes.controlArea__authLink}  to='/login'>Вход</Link>
                 </div> 
                 
