@@ -34,10 +34,10 @@ export default function (){
             <h1>Регистрация</h1>
             <form className={classes.registrationForm} onSubmit={registrationDataHandler}>
 
-                <MyInput label='Имя' name='name' type='text' placeholder='John Doe' data={registrationData}/>      
-                <MyInput label='Email' name='email' type='text' placeholder='JohnDoe@example.com' data={registrationData} />
-                <MyInput label='Пароль' name='password' type='password'  data={registrationData}/> 
-                <MyInput label='Подтверждение пароля' name='password_confirmation' type='password' data={registrationData}/>
+                <MyInput label='Имя' name='name' type='text' placeholder='John Doe' bindData={registrationData}/>      
+                <MyInput label='Email' name='email' type='text' placeholder='JohnDoe@example.com' bindData={registrationData} />
+                <MyInput label='Пароль' name='password' type='password'  bindData={registrationData}/> 
+                <MyInput label='Подтверждение пароля' name='password_confirmation' type='password' bindData={registrationData}/>
 
                 <div className={classes.registrationForm__controlArea}>
                     <button  className={classes.controlArea__btnSunmit} onClick={registrationDataHandler}>Регистрация</button>

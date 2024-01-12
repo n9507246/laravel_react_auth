@@ -35,8 +35,8 @@ export default function (){
 
             <form className={classes.loginForm} onSubmit={login}>
                 
-                <MyInput label='Email' name='email' type='text' placeholder='JohnDoe@example.com' data={formData} />
-                <MyInput label='Пароль' name='password' type='text' data={formData}/>      
+                <MyInput label='Email' name='email' type='text' placeholder='JohnDoe@example.com' bindData={formData} />
+                <MyInput label='Пароль' name='password' type='text' bindData={formData}/>      
 
                 <div className={classes.loginForm__controlArea}>
                     <button  className={classes.controlArea__btnSunmit} onClick={login}>Вход</button>
