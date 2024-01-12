@@ -25,10 +25,24 @@ Route::group([
     Route::post('registration', [App\Http\Controllers\AuthController::class, 'registration']);
     Route::post('logout', [App\Http\Controllers\AuthController::class, 'logout']);
     Route::post('refresh', [App\Http\Controllers\AuthController::class, 'refresh']);
-    Route::post('me', [App\Http\Controllers\AuthController::class, 'me']);
+
+
 
 });
 
-Route::post('/test', function(){
-    return response()->json([ 'ass' => 'hole']);
-});
+Route::post('auth/me', [App\Http\Controllers\AuthController::class, 'me'])->middleware('jwt.auth');
+
+    Route::group([
+
+        'middleware' => 'jwt.auth',
+
+    ], function ($router) {
+    
+        
+        Route::get('/test', function(){
+            return response()->json([ 'ass' => 'hole']);
+        });
+    });
+    Route::post('/test2', function(){
+        return response()->json([ 'ass' => 'hole']);
+    });    

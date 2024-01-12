@@ -13,7 +13,7 @@ export const AuthContextProvider = ({children}) => {
         API.post('/auth/me', {})
             .then((response) => { setDataUser(response.data) })
             .catch((error)=>{
-                console.error('error',error)
+                // console.error('error',error)
             }) 
     }, [token])
 
