@@ -12,7 +12,7 @@ export default function (){
     const auth = useAuth()
     const navigate = useNavigate()
 
-    const registrationDataHandler = (e)=>{
+    const registrationFormHandler = (e)=>{
         e.preventDefault();
         API.post('/auth/registration', registrationData.getData())
         .then((responce)=>{
@@ -32,7 +32,7 @@ export default function (){
     return (
         <div className={classes.registration}>
             <h1>Регистрация</h1>
-            <form className={classes.registrationForm} onSubmit={registrationDataHandler}>
+            <form className={classes.registrationForm} onSubmit={registrationFormHandler}>
 
                 <MyInput label='Имя' name='name' type='text' placeholder='John Doe' bindData={registrationData}/>      
                 <MyInput label='Email' name='email' type='text' placeholder='JohnDoe@example.com' bindData={registrationData} />
@@ -40,7 +40,7 @@ export default function (){
                 <MyInput label='Подтверждение пароля' name='password_confirmation' type='password' bindData={registrationData}/>
 
                 <div className={classes.registrationForm__controlArea}>
-                    <button  className={classes.controlArea__btnSunmit} onClick={registrationDataHandler}>Регистрация</button>
+                    <button  className={classes.controlArea__btnSunmit} onClick={registrationFormHandler}>Регистрация</button>
                     <Link className={classes.controlArea__authLink}  to='/login'>Вход</Link>
                 </div> 
                 
