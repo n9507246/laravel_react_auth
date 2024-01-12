@@ -1,36 +1,29 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from "@contexts/authContext"
-import { useRef, useState } from "react"
 import API from "@axiosClient"
+import useFormData from '@hooks/useFormData'
+import MyInput from '@UI/Myinput/MyInput'
 import classes from './style.module.css'
 
 export default function (){     
 
     const navigate = useNavigate()
-    const [err, setErr] = useState({})
+    const formData = useFormData()
     const auth = useAuth()
-    
-    const emailRef = useRef()
-    const passwordRef = useRef() 
-    
+
     const login = (ev)=> {
         ev.preventDefault()
-        const formData = {
-            email: emailRef.current.value,
-            password: passwordRef.current.value
-        }
-
-        API.post('/auth/login', formData)
+        API.post('/auth/login', formData.getData())
             .then((responce)=>{
                 // console.log('res', responce )
                 auth.setDataCurrendUser({
                     userData : responce.data.user_data,
-                    token : responce.data.token
+                    token : responce.data.access_token
                 })
                 navigate('/', {replace:true})
             })
             .catch((error)=>{
-                if(error.response.status == 422) form.errors.setMessage(error.response.data.errors)
+                if(error.response.status == 422) formData.setError(error.response.data.errors)
             })
 
         
@@ -39,22 +32,11 @@ export default function (){
     return (
         <div className={classes.login}>
             <h1>Вход</h1>
-            {/* <pre>
-                {err.map((e)=> <div>{e.key}: {e.value}</div>)}
-            </pre> */}
-            <form className={classes.loginForm} onSubmit={login}>
-        
-                <div className={classes.loginForm__field}>
-                    <label>Email</label>
-                    <input ref={emailRef} type='email' placeholder="JohnDoe@example.com"/>
-                    { form.errors.message.email !== undefined && <div className={classes.field__error}>{err.email[0]}</div> }
-                </div>
 
-                <div className={classes.loginForm__field}>
-                    <label>Пароль</label>
-                    <input ref={passwordRef} type='password'/>
-                    {form.errors.message.password !== undefined && <div className={classes.field__error}>{err.password[0]}</div>}
-                </div>
+            <form className={classes.loginForm} onSubmit={login}>
+                
+                <MyInput label='Email' name='email' type='text' placeholder='JohnDoe@example.com' data={formData} />
+                <MyInput label='Пароль' name='password' type='text' data={formData}/>      
 
                 <div className={classes.loginForm__controlArea}>
                     <button  className={classes.controlArea__btnSunmit} onClick={login}>Вход</button>
