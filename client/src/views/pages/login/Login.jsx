@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from "@contexts/authContext"
-import API from "@axiosClient"
 import useFormData from '@hooks/useFormData'
 import MyInput from '@UI/Myinput/MyInput'
 import classes from './style.module.css'
