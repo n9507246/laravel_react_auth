@@ -5,18 +5,19 @@ export default function (){
 
     const auth = useAuth()
 
-
     const logout = ()=> { 
-        auth.removeCurrentUser()
+        auth.logout()
         navigate('/login', {replace:true})
     }
+
     return (
         <>
             <h1>Dashboard</h1>
-            <div>
-                Hi {auth.dataUser?.name}
-            </div>
-            
+            {
+                auth.dataUser !== null ? 
+                    <div> Hi {auth.dataUser?.name} </div>
+                    : <div> Download...</div>
+            }
             <button onClick={logout}>Sing out</button>
         </>
     )

@@ -2,7 +2,6 @@ import classes from './styles.module.css'
 import { Link, useNavigate } from "react-router-dom"
 import MyInput from '@UI/Myinput/MyInput'
 import { useAuth } from "@contexts/authContext"
-import API from "@axiosClient"
 
 import useFormData from '@hooks/useFormData'
 
@@ -13,19 +12,14 @@ export default function (){
     const navigate = useNavigate()
 
     const registrationFormHandler = (e)=>{
+
         e.preventDefault();
-        API.post('/auth/registration', registrationData.getData())
-        .then((responce)=>{
-            auth.setDataCurrendUser({
-                userData : responce.data.user_data,
-                token : responce.data.access_token
-            })
-            navigate('/', {replace:true})
-        })
-        .catch((error)=>{
-            console.error('error',error)
-            if(error.response.status == 422) registrationData.setError(error.response.data.errors)
-        
+
+        auth.registration('/auth/registration', registrationData.getData())
+            .then(()=>{ navigate('/', {replace:true}) })
+            .catch((error)=>{
+                console.error('error',error)
+                if(error.response.status == 422) registrationData.setError(error.response.data.errors)    
         })
         
     }

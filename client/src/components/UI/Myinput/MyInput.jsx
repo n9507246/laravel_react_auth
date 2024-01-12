@@ -1,7 +1,7 @@
 import classes from './styles.module.css'
 
 export default function(props){
-    // console.log(props.data.getErrorByName(props.name))
+
     const {getDataByName, getErrorByName} = props.bindData !== undefined ? props.bindData : {}
     return(
         <div className={classes.inputField}>

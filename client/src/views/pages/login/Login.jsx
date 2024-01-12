@@ -8,25 +8,18 @@ import classes from './style.module.css'
 export default function (){     
 
     const navigate = useNavigate()
-    const loginData = useFormData()
+    const loginForm = useFormData()
     const auth = useAuth()
 
     const loginFormHandler = (ev)=> {
-        ev.preventDefault()
-        API.post('/auth/login', loginData.getData())
-            .then((responce)=>{
-                auth.setDataCurrendUser({
-                    userData : responce.data.user_data,
-                    token : responce.data.access_token
-                })
-                navigate('/', {replace:true})
-            })
-            .catch((error)=>{
-                console.error('error',error)
-                if(error.response.status == 422) loginData.setError(error.response.data.errors)
-            })
-
         
+        ev.preventDefault()
+        
+        auth.login('/auth/login', loginForm.getData())
+            .then(() => navigate('/', {replace:true}))
+            .catch((error)=>{
+                if(error.response.status == 422) loginForm.setError(error.response.data.errors)
+            })
     }
 
     return (
@@ -35,8 +28,8 @@ export default function (){
 
             <form className={classes.loginForm} onSubmit={loginFormHandler}>
                 
-                <MyInput label='Email' name='email' type='text' placeholder='JohnDoe@example.com' bindData={loginData} />
-                <MyInput label='Пароль' name='password' type='text' bindData={loginData}/>      
+                <MyInput label='Email' name='email' type='text' placeholder='JohnDoe@example.com' bindData={loginForm} />
+                <MyInput label='Пароль' name='password' type='password' bindData={loginForm}/>      
 
                 <div className={classes.loginForm__controlArea}>
                     <button  className={classes.controlArea__btnSunmit} onClick={loginFormHandler}>Вход</button>
