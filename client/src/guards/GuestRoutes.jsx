@@ -4,14 +4,7 @@ import { useAuth } from '@contexts/authContext';
 
 
 export default function(){
-   
-    // const user = {
-    //     data:  localStorage.getItem('TOKEN'),
-    //     get isAuthenticate() {
-    //         return this.data !== null
-    //     } 
-    // }
-    
+
     const user = useAuth()
 
     if(user.isAuthenticate) return redirectToDashboard()  
