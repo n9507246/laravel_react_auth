@@ -8,12 +8,12 @@ import classes from './style.module.css'
 export default function (){     
 
     const navigate = useNavigate()
-    const formData = useFormData()
+    const loginData = useFormData()
     const auth = useAuth()
 
-    const login = (ev)=> {
+    const loginFormHandler = (ev)=> {
         ev.preventDefault()
-        API.post('/auth/login', formData.getData())
+        API.post('/auth/login', loginData.getData())
             .then((responce)=>{
                 // console.log('res', responce )
                 auth.setDataCurrendUser({
@@ -23,7 +23,8 @@ export default function (){
                 navigate('/', {replace:true})
             })
             .catch((error)=>{
-                if(error.response.status == 422) formData.setError(error.response.data.errors)
+                console.log('error',error)
+                if(error.response.status == 422) loginData.setError(error.response.data.errors)
             })
 
         
@@ -33,13 +34,13 @@ export default function (){
         <div className={classes.login}>
             <h1>Вход</h1>
 
-            <form className={classes.loginForm} onSubmit={login}>
+            <form className={classes.loginForm} onSubmit={loginFormHandler}>
                 
-                <MyInput label='Email' name='email' type='text' placeholder='JohnDoe@example.com' bindData={formData} />
-                <MyInput label='Пароль' name='password' type='text' bindData={formData}/>      
+                <MyInput label='Email' name='email' type='text' placeholder='JohnDoe@example.com' bindData={loginData} />
+                <MyInput label='Пароль' name='password' type='text' bindData={loginData}/>      
 
                 <div className={classes.loginForm__controlArea}>
-                    <button  className={classes.controlArea__btnSunmit} onClick={login}>Вход</button>
+                    <button  className={classes.controlArea__btnSunmit} onClick={loginFormHandler}>Вход</button>
                     <Link className={classes.controlArea__regLink}  to='/registration'>Регистрация</Link>
                 </div>
                 
