@@ -15,7 +15,6 @@ export default function (){
         ev.preventDefault()
         API.post('/auth/login', loginData.getData())
             .then((responce)=>{
-                // console.log('res', responce )
                 auth.setDataCurrendUser({
                     userData : responce.data.user_data,
                     token : responce.data.access_token
@@ -23,7 +22,7 @@ export default function (){
                 navigate('/', {replace:true})
             })
             .catch((error)=>{
-                console.log('error',error)
+                console.error('error',error)
                 if(error.response.status == 422) loginData.setError(error.response.data.errors)
             })
 

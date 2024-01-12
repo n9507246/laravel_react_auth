@@ -23,7 +23,7 @@ export default function (){
             navigate('/', {replace:true})
         })
         .catch((error)=>{
-            console.log('error',error)
+            console.error('error',error)
             if(error.response.status == 422) registrationData.setError(error.response.data.errors)
         
         })
